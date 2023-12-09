@@ -1,15 +1,14 @@
-import React from 'react';
-import WelcomeBanner from './Welcomebanner'; // Adjust the path based on your folder structure
+import React from "react";
+import WelcomeBanner from "./Welcomebanner";
+import Navbar from "./Navbar"
 
 function App() {
   return (
     <div className="App">
       <WelcomeBanner />
-      {/* other components */}
+      < Navbar />
     </div>
   );
 }
 
 export default App;
-
-
