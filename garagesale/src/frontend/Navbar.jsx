@@ -1,24 +1,21 @@
 import React from "react";
+import { AppBar, Toolbar, Button, Typography } from '@mui/material';
+
+
 
 const Navbar = () => {
   return (
-    <nav>
-      <ul>
-        <li>
-          <a href="/">Home</a>
-        </li>
-        <li>
-          <a href="/sales">Sales</a>
-        </li>
-        <li>
-          <a href="/about">About</a>
-        </li>
-        <li>
-          {" "}
-          <a href="/signup"> Signup </a>
-        </li>
-      </ul>
-    </nav>
+    <AppBar position="static">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          Garage $ale
+        </Typography>
+        <Button color="inherit" href="/">Home</Button>
+        <Button color="inherit" href="/sales">Sales</Button>
+        <Button color="inherit" href="/about">About</Button>
+        <Button color="inherit" href="/signup">Signup</Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 

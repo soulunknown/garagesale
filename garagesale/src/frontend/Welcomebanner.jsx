@@ -1,22 +1,28 @@
-import React from 'react';
+import { styled } from '@mui/system';
 import { Card, CardContent, Typography, Button } from '@mui/material';
+
+const CustomCard = styled(Card)({
+  maxWidth: 345,
+  marginY: 2, // shorthand for marginTop and marginBottom
+});
+
+const CustomButton = styled(Button)({
+  marginTop: 2,
+});
+
 function Welcomebanner() {
-    return (
-      <Card sx={{ maxWidth: 345, my: 2 }}>
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Welcome to Garage $ale!
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Find Treasures at Local Garage Sales!
-          </Typography>
-          <Button variant="contained" color="primary" sx={{ mt: 2 }}>
-            Start Exploring
-          </Button>
-        </CardContent>
-      </Card>
-    );
-  }
-  
-  export default Welcomebanner;
+  return (
+    <CustomCard>
+      <CardContent>
+        Welcome!
+        <CustomButton variant="contained" color="primary">
+          Start Exploring
+        </CustomButton>
+      </CardContent>
+    </CustomCard>
+  );
+}
+
+export default Welcomebanner;
+
   
