@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "start": "node garagesale/src/backend/api/server.js",
-    "build": "npx vite build",
+    "build": "rollup -c",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
@@ -20,6 +20,9 @@
     "react-router-dom": "^6.21.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^25.0.7",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-node-resolve": "^15.2.3",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
     "@vitejs/plugin-react": "^4.2.0",
