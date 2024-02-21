@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
 
 const Signup = () => {
+  // Add username and lastName to the initial state
   const [userData, setUserData] = useState({
     name: '',
+    lastName: '', // Added lastName
+    username: '', // Added username
     email: '',
     password: ''
   });
@@ -13,7 +16,7 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Here you will handle the form submission, sending data to your backend
+    // Implementation for form submission goes here
   };
 
   return (
@@ -21,8 +24,22 @@ const Signup = () => {
       <input
         type="text"
         name="name"
-        placeholder="Name"
+        placeholder="First Name" // Updated placeholder for clarity
         value={userData.name}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="lastName" // New input for last name
+        placeholder="Last Name"
+        value={userData.lastName}
+        onChange={handleChange}
+      />
+      <input
+        type="text"
+        name="username" // New input for username
+        placeholder="Username"
+        value={userData.username}
         onChange={handleChange}
       />
       <input
