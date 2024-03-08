@@ -1,8 +1,10 @@
-const bcrypt = require('bcrypt');
-const pool = require('./db');
+import express from 'express';
+import bcrypt from 'bcrypt';
+import pool from '../db/db.js'; // Make sure the path is correct
 
-// User registration endpoint
-app.post('/api/signup', async (req, res) => {
+const router = express.Router();
+
+router.post('/signup', async (req, res) => {
   try {
     const { name, lastName, username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -18,3 +20,5 @@ app.post('/api/signup', async (req, res) => {
     res.status(500).send('Server error');
   }
 });
+
+export default router;

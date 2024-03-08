@@ -1,9 +1,13 @@
-const { Pool } = require('pg');
-require('dotenv').config();
+import pg from 'pg';
+import dotenv from 'dotenv';
+dotenv.config();
 
+const { Pool } = pg;
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  // Additional configuration might be required for production, like SSL
+  ssl: {
+    rejectUnauthorized: false // This is important for connecting to Heroku Postgres and other cloud databases
+  }
 });
 
-module.exports = pool;
+export default pool;

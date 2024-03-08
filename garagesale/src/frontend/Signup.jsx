@@ -1,61 +1,107 @@
 import React, { useState } from 'react';
 
 const Signup = () => {
-  // Add username and lastName to the initial state
+  // State to store user data
   const [userData, setUserData] = useState({
     name: '',
-    lastName: '', // Added lastName
-    username: '', // Added username
+    lastName: '',
+    username: '',
     email: '',
     password: ''
   });
 
+  // Update state on input change
   const handleChange = (e) => {
-    setUserData({ ...userData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
   };
 
+  // Submit form data to the backend
   const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implementation for form submission goes here
+    const { name, lastName, username, email, password } = userData;
+
+    const backendUrl = 'http://localhost:3000/api/signup'; // Replace PORT with your backend port number
+
+    try {
+      const response = await fetch(backendUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name, lastName, username, email, password
+        }),
+      });
+
+      if (!response.ok) {
+        const message = await response.text();
+        throw new Error(`Error: ${response.status} - ${message}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      alert('Signup successful!');
+      // Optionally redirect the user or clear the form here
+    } catch (error) {
+      console.error('There was a problem with the signup:', error);
+      alert('Signup failed!');
+    }
   };
 
+  // Render the sign-up form
   return (
     <form onSubmit={handleSubmit}>
+      <label htmlFor="name">First Name:</label>
       <input
         type="text"
+        id="name"
         name="name"
-        placeholder="First Name" // Updated placeholder for clarity
         value={userData.name}
         onChange={handleChange}
+        required
       />
+
+      <label htmlFor="lastName">Last Name:</label>
       <input
         type="text"
-        name="lastName" // New input for last name
-        placeholder="Last Name"
+        id="lastName"
+        name="lastName"
         value={userData.lastName}
         onChange={handleChange}
+        required
       />
+
+      <label htmlFor="username">Username:</label>
       <input
         type="text"
-        name="username" // New input for username
-        placeholder="Username"
+        id="username"
+        name="username"
         value={userData.username}
         onChange={handleChange}
+        required
       />
+
+      <label htmlFor="email">Email:</label>
       <input
         type="email"
+        id="email"
         name="email"
-        placeholder="Email"
         value={userData.email}
         onChange={handleChange}
+        required
       />
+
+      <label htmlFor="password">Password:</label>
       <input
         type="password"
+        id="password"
         name="password"
-        placeholder="Password"
         value={userData.password}
         onChange={handleChange}
+        required
       />
+
       <button type="submit">Sign Up</button>
     </form>
   );
