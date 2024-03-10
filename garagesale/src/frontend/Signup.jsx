@@ -21,7 +21,7 @@ const Signup = () => {
     e.preventDefault();
     const { name, lastName, username, email, password } = userData;
 
-    const backendUrl = 'http://localhost:3000/api/signup'; // Replace PORT with your backend port number
+    const backendUrl = 'http://localhost:3000/api/signup'; 
 
     try {
       const response = await fetch(backendUrl, {
