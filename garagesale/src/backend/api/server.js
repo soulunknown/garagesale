@@ -11,14 +11,7 @@ const port = process.env.PORT || 3000;
 // Enable CORS for all requests
 app.use(cors());
 
-// Alternatively, enable CORS for specific domains:
-// const corsOptions = {
-//   origin: 'http://localhost:5173', // or your frontend's origin
-// };
-// app.use(cors(corsOptions));
 
-// Middleware to parse JSON bodies
-app.use(express.json());
 
 // Serve static files from the 'public' directory
 app.use(express.static('public'));

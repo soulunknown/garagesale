@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import dbPool from '../db/db';
+import dbPool from '/Users/henry/Desktop/garagesale/garagesale/src/backend/db/db.js';
 
 const router = express.Router();
 
