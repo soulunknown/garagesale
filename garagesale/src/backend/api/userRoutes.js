@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import pool from '../db/db.js'; // Make sure the path is correct
+import dbPool from '../db/db';
 
 const router = express.Router();
 
