@@ -1,6 +1,6 @@
 import express from 'express';
 import bcrypt from 'bcrypt';
-import dbPool from '/Users/henry/Desktop/garagesale/garagesale/src/backend/db/db.js';
+import dbPool from '../db/db.js'; // Make sure this path correctly leads to your db.js file
 
 const router = express.Router();
 
@@ -9,9 +9,10 @@ router.post('/signup', async (req, res) => {
     const { name, lastName, username, email, password } = req.body;
     const hashedPassword = await bcrypt.hash(password, 10);
     
-    const newUser = await pool.query(
-      'INSERT INTO users (name, last_name, username, email, password) VALUES ($1, $2, $3, $4, $5) RETURNING *',
-      [name, lastName, username, email, hashedPassword]
+    // Use "dbPool" here instead of "pool"
+    const newUser = await dbPool.query(
+      'INSERT INTO users (username, email, password_hash, created_at, updated_at) VALUES ($1, $2, $3, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) RETURNING *',
+      [username, email, hashedPassword] // Adjusted according to your database structure
     );
 
     res.status(201).json(newUser.rows[0]);

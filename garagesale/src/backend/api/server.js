@@ -1,30 +1,41 @@
-// Import necessary modules using ES Module syntax
-import dotenv from 'dotenv';
+// Import necessary modules
 import express from 'express';
-import cors from 'cors'; // Import the cors module
-import userRoutes from './userRoutes.js'; 
-dotenv.config();
+import cors from 'cors';
+import dotenv from 'dotenv';
+import pkg from 'pg';
+
+const { Pool } = pkg;
+dotenv.config({ path: '/Users/henry/Desktop/garagesale/garagesale/.env' });
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Enable CORS for all requests
 app.use(cors());
+app.use(express.json());
 
-
-
-// Serve static files from the 'public' directory
-app.use(express.static('public'));
-
-// Use the userRoutes with CORS enabled
-app.use('/api', userRoutes);
-
-// Example route for the home page
-app.get('/', (req, res) => {
-  res.send('Garage $ale');
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
-// Start the server
+// Define the /api/signup POST route
+app.post('/api/signup', async (req, res) => {
+  const { username, password } = req.body; // Extract username and password from the request body
+  
+  console.log('Signup attempt for:', username); // For demonstration, logging the username
+  
+  // Here, you'd typically insert the user's data into your database.
+  // For simplicity, this example just sends a response back to the client.
+  
+  res.json({ message: 'Signup successful!' });
+});
+
+app.get('/', (req, res) => {
+  res.send('Welcome to the Garage $ale API');
+});
+
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
 });
